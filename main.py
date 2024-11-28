@@ -1,7 +1,3 @@
-# Alex Day, Jun Jia Liu
-# 18/10/2024
-# Term 1 Mini Project - Ultimate Tic Tac Toe / Super TTT
-
 # \\ IMPORTS //#
 import os
 
@@ -92,7 +88,7 @@ class TTTGame:
         for i in range(3):
             for j in range(3):
                 self.previous[j][i] = self.ultimate_grid[i][j]
-
+        #Sets the big X's and O's for deciding the winner
         if self.grid[0][0] == self.grid[0][1] == self.grid[0][2] == "X" or self.grid[1][0] == self.grid[1][1] == self.grid[1][2] == "X" or self.grid[2][0] == self.grid[2][1] == self.grid[2][2] == "X" or self.grid[0][0] == self.grid[1][0] == self.grid[2][0] == "X" or self.grid[0][1] == self.grid[1][1] == self.grid[2][1] == "X" or self.grid[0][2] == self.grid[1][2] == self.grid[2][2] == "X" or self.grid[0][0] == self.grid[1][1] == self.grid[2][2] == "X" or self.grid[0][2] == self.grid[1][1] == self.grid[2][0] == "X":
             self.ultimate_grid[0][0] = "X"
         if self.grid[0][0] == self.grid[0][1] == self.grid[0][2] == "O" or self.grid[1][0] == self.grid[1][1] == self.grid[1][2] == "O" or self.grid[2][0] == self.grid[2][1] == self.grid[2][2] == "O" or self.grid[0][0] == self.grid[1][0] == self.grid[2][0] == "O" or self.grid[0][1] == self.grid[1][1] == self.grid[2][1] == "O" or self.grid[0][2] == self.grid[1][2] == self.grid[2][2] == "O" or self.grid[0][0] == self.grid[1][1] == self.grid[2][2] == "O" or self.grid[0][2] == self.grid[1][1] == self.grid[2][0] == "O":
@@ -129,7 +125,7 @@ class TTTGame:
             self.ultimate_grid[2][2] = "X"
         if self.grid[6][6] == self.grid[6][7] == self.grid[6][8] == "O" or self.grid[7][6] == self.grid[7][7] == self.grid[7][8] == "O" or self.grid[8][6] == self.grid[8][7] == self.grid[8][8] == "O" or self.grid[6][6] == self.grid[7][6] == self.grid[8][6] == "O" or self.grid[6][7] == self.grid[7][7] == self.grid[8][7] == "O" or self.grid[6][8] == self.grid[7][8] == self.grid[8][8] == "O" or self.grid[6][6] == self.grid[7][7] == self.grid[8][8] == "O" or self.grid[6][8] == self.grid[7][7] == self.grid[8][6] == "O":
             self.ultimate_grid[2][2] = "O"
-
+        #The visuals for the big X's and O's
         if self.ultimate_grid[0][0] == "X":
             imp = pygame.image.load("./assets/214x214/x214.png")
             self.screen.blit(imp, (0, 0))
@@ -216,7 +212,7 @@ class TTTGame:
             playsound3.playsound("./assets/sounds/tada.mp3")
 
         pygame.display.flip()
-
+    #Checks if a big X's or O's row is made and declares a winner if there is
     def check_ultimate_rows(self):
         three_row = False
         if self.ultimate_grid[0][0] == self.ultimate_grid[0][1] == self.ultimate_grid[0][2] != "#":
@@ -244,7 +240,7 @@ class TTTGame:
             self.winner = "X"
 
         return three_row
-
+    #checks if moves are valid
     def validate_move(self, x, y):
         if (x // 3 == self.restriction_x and y // 3 == self.restriction_y) or (
                 self.restriction_x == -1 and self.restriction_y == -1):
